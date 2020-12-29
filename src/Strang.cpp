@@ -21,23 +21,29 @@ public:
 		delete[] mBuffer;
 	}
 
+	// Copy Constructor
 	Strang(const Strang& other) :
 			mMaxLen { other.mMaxLen },
 			mBuffer { new char[other.mMaxLen] },
 			mLen { other.mLen } {
+		std::cout << "::Strang(const Strang& other)" << std::endl;
 		std::strncpy(mBuffer, other.mBuffer, mMaxLen);
 	}
 
+	// Move Constructor
 	Strang(Strang&& other) noexcept :
 			mMaxLen(other.mMaxLen),
 			mBuffer(other.mBuffer),
 			mLen(other.mLen) {
+		std::cout << "::Strang(Strang&& other)" << std::endl;
 		other.mLen = 0;
 		other.mBuffer = nullptr;
 		other.mMaxLen = 0;
 	}
 
+	// Copy assignment operator
 	Strang& operator=(const Strang& other) {
+		std::cout << "::Strang& operator=(const Strang& other)" << std::endl;
 		if (this == &other) {
 			return *this;
 		}
@@ -50,7 +56,9 @@ public:
 		return *this;
 	}
 
+	// Move assignment operator
 	Strang& operator=(Strang&& other) noexcept {
+		std::cout << "::Strang& operator=(Strang&& other)" << std::endl;
 		if (this == &other) {
 			return *this;
 		}
